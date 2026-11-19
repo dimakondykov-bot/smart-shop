@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+sqlalchemy
+aiogram
+asyncpg
+pydantic-settings
+jinja2
+greenlet
+bcrypt
+email-validator

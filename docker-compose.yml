@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  # Название нашего сервиса (контейнера) в Докере
+  smart_shop_db:
+    image: postgres:15-alpine # Скачать официальный готовый образ PostgreSQL версии 15 (alpine - облегченная версия)
+    container_name: smart_shop_postgres # Имя контейнера, которое мы увидим в программе Docker
+    restart: always # Если компьютер перезагрузится, докер сам заново поднимет базу
+
+    # Секретные настройки. Докер сам передаст их внутрь базы при создании
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: smart_shop
+
+    # Пробрасываем порты: связываем порт 5432 внутри контейнера с портом 5432 на твоем реальном компьютере
+    ports:
+      - "5433:5432"
+
+    # Создаем изолированную виртуальную флешку (Volume), чтобы при выключении Докера все наши таблицы и запчасти не удалялись, а сохранялись на диске
+    volumes:
+      - postgres_smart_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_smart_data:
