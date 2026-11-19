@@ -8,3 +8,4 @@ jinja2
 greenlet
 bcrypt
 email-validator
+pydantic
