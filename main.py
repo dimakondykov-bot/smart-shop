@@ -3,6 +3,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
 from src.core.database import get_async_session #Импортируем наш асинхронный генератор сессий из database.py
 from src.users.router import router as users_router
+from src.products.router import router as products_router
+
 
 # Мы создаём главный объект сайта и кладем его в переменную app
 # (именно к ней ты обратился в терминале командой uvicorn main:app).
@@ -14,7 +16,7 @@ app = FastAPI(
 
 # Подключаем раздел пользователей к главному приложению
 app.include_router(users_router)
-
+app.include_router(products_router)
 # Главная страница сайта.
 @app.get("/") #  Это декоратор-маршрутизатор.
 # Функция-обработчик. Слово async делает её асинхронной — сайт не «зависнет» для других покупателей
